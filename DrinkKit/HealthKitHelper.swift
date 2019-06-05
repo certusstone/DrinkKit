@@ -115,4 +115,35 @@ public class HealthKitHelper {
     deleteGroup.wait()
     return returnValue
   }
+  
+  // MARK: Setup Helpers
+  
+  /**
+   Gives a boolean response to whether HealthKit is available on the current device.
+   
+   The iPad is an example of such a device.
+   
+   - Returns: true if the current device has healthkit enabled, false if not.
+   */
+  public class func healthAvailable() -> Bool {
+    return HKHealthStore.isHealthDataAvailable()
+  }
+  
+  /**
+   Requests access to the necessary HealthKit types.
+   
+   - Throws: HKHealthStore encountered an error while requesting authorization.
+   */
+  public class func requestAccess() throws {
+    let allTypes = Set([waterType!])
+    var requestError:Error?
+    HKHealthStore().requestAuthorization(toShare: allTypes, read: allTypes) { (success, error) in
+      if !success {
+        requestError = error!
+      }
+    }
+    if requestError != nil {
+      throw requestError!
+    }
+  }
 }
