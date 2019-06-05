@@ -171,10 +171,10 @@ public class DrinkKit {
 
 extension HKUnit {
   /// HKUnit.ml = HKUnit(from: "mL")
-  static let ml = HKUnit(from: "mL")
+  static public let ml = HKUnit(from: "mL")
   
   /// HKUnit.oz = HKUnit(from: "oz")
-  static let oz = HKUnit(from: "oz")
+  static public let oz = HKUnit(from: "oz")
 }
 
 extension Double {
